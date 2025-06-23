@@ -31,6 +31,7 @@ export class StorageService {
       );
     } catch (error) {
       console.log("Appwrite error in creating post: ", error);
+      return false;
     }
   }
 
@@ -49,6 +50,7 @@ export class StorageService {
       );
     } catch (error) {
       console.log("Appwrite error in updating post: ", error);
+      return false;
     }
   }
 
@@ -61,6 +63,7 @@ export class StorageService {
       );
     } catch (error) {
       console.log("Appwrite error in deleting the document: ", error);
+      return false;
     }
   }
 
@@ -73,6 +76,7 @@ export class StorageService {
       );
     } catch (error) {
       console.log("Appwrite error in getting the document: ", error);
+      return false;
     }
   }
 
@@ -85,6 +89,42 @@ export class StorageService {
       );
     } catch (error) {
       console.log("Appwrite error in listing the post: ", error);
+      return false;
+    }
+  }
+
+  // upload file methods
+
+  // bucketId is the storage service ID where the files will be uploaded
+
+  async uploadFile(file) {
+    try {
+      return await this.storage.createFile(
+        config.appwriteBucketId,
+        ID.unique(),
+        file
+      );
+    } catch (error) {
+      console.log("Appwrite serivice error :: uploadFile :: ", error);
+      return false;
+    }
+  }
+
+  async deleteFile(fileId) {
+    try {
+      await this.storage.deleteFile(config.appwriteBucketId, fileId);
+      return true;
+    } catch (error) {
+      console.log("Appwrite service error :: deleteFile :: ", error);
+      return false;
+    }
+  }
+
+  async getFilePreview(fileId) {
+    try {
+      return await this.storage.getFile(config.appwriteBucketId, fileId);
+    } catch (error) {
+      console.log("Appwrite service error :: getFilePreview :: ", error);
       return false;
     }
   }
