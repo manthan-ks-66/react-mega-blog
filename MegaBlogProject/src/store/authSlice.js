@@ -21,7 +21,7 @@ const authSlice = createSlice({
   },
 });
 
-// actions are the reducer functions that are exported to the store
+// actions are the reducer functions that are exported to the store (store.js)
 export const { login, logout } = authSlice.actions;
 
 export default authSlice.reducer;

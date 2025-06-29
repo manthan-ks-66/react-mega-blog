@@ -1,12 +1,33 @@
+import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import authService from "./appwrite/auth";
+import { login, logout } from "./store/authSlice";
 import "./App.css";
 
 function App() {
-  console.log(import.meta.env.VITE_APP_APPWRITE_URL);
-  return (
+  const [loading, setLoading] = useState(true);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    authService
+      .getCurrentUser()
+      .then((userData) => {
+        if (userData) {
+          dispatch(login(userData));
+        } else {
+          dispatch(logout());
+        }
+      })
+      .catch((error) => console.log(error))
+      .finally(() => setLoading(false));
+  });
+
+  return !loading ? (
     <>
-      <h1>A blog app with react</h1>
+      <div>Welcome to blog app</div>
     </>
-  );
+  ) : null;
 }
 
 export default App;
