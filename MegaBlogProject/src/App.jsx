@@ -3,31 +3,39 @@ import { useDispatch } from "react-redux";
 import authService from "./appwrite/auth";
 import { login, logout } from "./store/authSlice";
 import "./App.css";
+import Test from "./components/test";
 
 function App() {
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    authService
-      .getCurrentUser()
-      .then((userData) => {
-        if (userData) {
-          dispatch(login(userData));
-        } else {
-          dispatch(logout());
-        }
-      })
-      .catch((error) => console.log(error))
-      .finally(() => setLoading(false));
-  });
+  // useEffect(() => {
+  //   authService
+  //     .getCurrentUser()
+  //     .then((userData) => {
+  //       if (userData) {
+  //         dispatch(login(userData));
+  //       } else {
+  //         dispatch(logout());
+  //       }
+  //     })
+  //     .catch((error) => console.log(error))
+  //     .finally(() => setLoading(false));
+  // });
 
-  return !loading ? (
+  // return !loading ? (
+  //   <>
+  //     <div>Welcome to blog app</div>
+
+  //   </>
+  // ) : null;
+
+  return (
     <>
-      <div>Welcome to blog app</div>
+      <Test />
     </>
-  ) : null;
+  );
 }
 
 export default App;

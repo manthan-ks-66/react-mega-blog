@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import LogutBtn from "./LogutBtn";
 import { Link } from "react-router-dom";
+import Logo from "../Logo";
 
 function Header() {
   const authStatus = useSelector((state) => state.auth.status);
@@ -35,12 +36,7 @@ function Header() {
     <header>
       // logo div
       <div>
-        <Link to={"/"}>
-          <img
-            src="https://awcdn1.ahmad.works/writing/wp-content/uploads/2018/02/logo_retina_248.png"
-            alt="logo"
-          />
-        </Link>
+        <Logo />
       </div>
       <nav>
         <div>
